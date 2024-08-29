@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .section-form {
+            display: flex;
+            align-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-style {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+            width: 300px;
+            border: 1px solid orange;
+            margin-top: 50px;
+            padding: 10px;
+        }
+        .form-style input {
+            height: 30px;
+            width: 280px;
+        }
+        .form-style button {
+            cursor: pointer;
+        }
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            gap: 50px;
+        }
+        .navbar ul li {
+            list-style: none;
+        }
+        .navbar ul li a{
+            text-decoration: none;
+            color: azure;
+            background: #000;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Members</a></li>
+            <li><a href="/students">Students</a></li>
+        </ul>
+    </nav>
+    <div>
+        <h2 style="color: red; text-align: center;">
+            This is my first Django Project
+        </h2>
+        <h1>Members</h1>
+<!--   
+        <ul>
+        {% for x in mymembers %}
+            <li>{{ x.firstName }} {{ x.lastName }}</li>
+        {% endfor %}
+        </ul> -->
+
+        <table border style="text-align: center; padding: 5px;">
+            <thead>
+                <tr>
+                    <th style="padding: 10px; text-align:ceter; ">First Name</th>
+                    <th style="padding: 10px; text-align:ceter; ">Last Name</th>
+                    <th style="padding: 10px; text-align:ceter; ">Email</th>
+                    <th style="padding: 10px; text-align:ceter; ">Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in mymembers %}
+                <tr>
+                    <td style="padding: 10px; text-align: center; color: chocolate; font-weight: bold;">{{x.firstName}}</td>
+                    <td style="padding: 10px; text-align: center; color: chocolate; font-weight: bold;">{{x.lastName}}</td>
+                    <td style="padding: 10px; text-align: center; color: chocolate; font-weight: bold;">{{x.email}}</td>
+                    <td style="padding: 10px; text-align: center; color: chocolate; font-weight: bold;">{{x.address}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        <section class="section-form">
+            <h2>Insert data</h2>
+            <div>
+                <form class="form-style" method="post">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <div>
+                        {{ form.firstName.label_tag }}<br>
+                        {{ form.firstName }}
+                        {{ form.firstName.errors }}
+                    </div>
+                    <div>
+                        {{ form.lastName.label_tag }}<br>
+                        {{ form.lastName }}
+                        {{ form.lastName.errors }}
+                    </div>
+                    <div>
+                        {{ form.email.label_tag }}<br>
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+                    <div>
+                        {{ form.address.label_tag }}<br>
+                        {{ form.address }}
+                        {{ form.address.errors }}
+                    </div>
+                    <button style="width: 100%; background-color: chartreuse; color: beige; text-align: center; border: none; padding: 15px 0px;" type="submit">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
