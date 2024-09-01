@@ -1,38 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .navbar ul {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100px;
-            gap: 50px;
-        }
-        .navbar ul li {
-            list-style: none;
-        }
-        .navbar ul li a{
-            text-decoration: none;
-            color: azure;
-            background: #000;
-            padding: 10px 20px;
-            font-size: 18px;
-            font-weight: 500;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="/">Members</a></li>
-            <li><a href="/students">Students</a></li>
-        </ul>
-    </nav>
+{% extends "master.html" %}
+{% block title %}
+    My Tennis clus student list page
+{% endblock%}
+{% block content %}
     <div>
         <h2 style="color: red; text-align: center;">
             Student list page
@@ -76,7 +46,6 @@
                 {% endfor %}
             </tbody>
         </table>
-
     </div>
-</body>
-</html>
+{% endblock %}
+

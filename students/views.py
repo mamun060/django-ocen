@@ -28,7 +28,7 @@ def createStudent(request):
             address=address
         )
         return redirect('students')  # Redirect to the student list page
-
+    
     return render(request, 'create_student.html')
 
 
