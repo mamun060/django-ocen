@@ -49,7 +49,7 @@ def members(request):
         form = MemberForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('members')
     else:
         form = MemberForm()
     
@@ -61,4 +61,4 @@ def members(request):
         'mymembers': mymembers,
         'form': form
     }
-    return render(request, 'index.html', context)
+    return render(request, 'members.html', context)
