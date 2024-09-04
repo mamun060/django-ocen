@@ -38,7 +38,7 @@
               <nav class="iq-sidebar-menu">
                   <ul id="iq-sidebar-toggle" class="side-menu">
                       <li class=" sidebar-layout">
-                          <a href="#" class="svg-icon">
+                          <a href="{% url 'dashboard' %}" class="svg-icon">
                               <i class="">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -48,6 +48,11 @@
                               <p class="mb-0 w-10 badge badge-pill badge-primary">6</p>
                           </a>
                       </li>
+                      <li class="px-3 pt-3 pb-2 ">
+                          <span class="text-uppercase small font-weight-bold">Authentication</span>
+                      </li>
+
+             
                       <li class="px-3 pt-3 pb-2 ">
                           <span class="text-uppercase small font-weight-bold">Application</span>
                       </li>
@@ -416,15 +421,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li class="list-inline-item"><a href="terms-of-service.html">Terms of Use</a></li>
-                    </ul>
+                   
                 </div>
                 <div class="col-lg-6 text-right">
                     <span class="mr-1">
                         Copyright
-                        <script>document.write(new Date().getFullYear())</script>© <a href="#" class="">Datum</a>
+                        <script>document.write(new Date().getFullYear())</script>© <a href="#" class="">SFS</a>
                         All Rights Reserved.
                     </span>
                 </div>
