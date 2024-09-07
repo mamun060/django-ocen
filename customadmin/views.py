@@ -26,7 +26,7 @@ def view_login(request):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             login(request, form.get_user())
-            return redirect("customadmin:dashboard")
+            return redirect("dashboard")
     else: 
         form = AuthenticationForm()
     return render(request, "user/login.html", { "form": form })
