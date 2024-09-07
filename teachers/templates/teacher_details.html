@@ -1,0 +1,28 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Teacher Details page
+{% endblock %}
+
+{% block content %}
+    <div style="padding: 50px;">
+        <button style="border:none; padding-top: 50px;">
+            <a style="text-decoration: none; font-size: 18px; color: white; background-color: black; padding: 10px 30px;" href="/teachers">
+                Back page
+            </a>
+        </button>
+        <h2>Teacher Details page</h2>
+        <p>------------------------------</p>
+        <div>
+            <h4>
+                Name: {{ teacher.firstname }}
+                <br>
+                Email: {{ teacher.email}}
+                <br>
+                Address: {{ teacher.address }}
+                <br>
+                Phone: {{ teacher.phone }}
+            </h4>
+        </div>
+    </div>
+{% endblock %}
