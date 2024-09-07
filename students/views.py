@@ -28,7 +28,7 @@ def createStudent(request):
             address=address
         )
         ## direct v
-        return redirect('students') 
+        # return redirect('students') 
         #
         #  # Redirect to the student list page
     

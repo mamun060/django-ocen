@@ -34,8 +34,10 @@ def register_view(request):
     #action="/register/" is url 
     <div class="row">
         {% csrf_token %}
-        {{ form }}
+        {{ form }} 
     </div>
+    <button type="submit" class="btn btn-primary btn-block mt-2">Submit</button>
+</form>
 ```
 ### Login user 
     
@@ -100,4 +102,13 @@ path('logout/', views.logout_view, name="logout")
 </form>
 ```
 
-### Let's start authorization
+### Let's start authorization implementation
+```python
+# import auth file login_required
+from django.contrib.auth.decorators import login_required
+
+# Create user registration permission - I mean if I attached @login_required then user must be login to create
+@login_required(login_url="/user/login")
+def register_view(request):
+    # create logic code
+```
