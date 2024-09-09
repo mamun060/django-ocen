@@ -1,0 +1,35 @@
+<!-- customadmin/templates/dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div>
+    <h2>Manage User wise permission</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+        
+        <label for="user_id">User:</label>
+        <select name="user_id" id="user_id">
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+        
+        <fieldset>
+            <legend>Permissions:</legend>
+            <div class="permission-list">
+                {% for permission in permissions %}
+                    <label>
+                        <input type="checkbox" name="permissions" value="{{ permission.codename }}">
+                        {{ permission.name }}
+                    </label><br>
+                {% endfor %}
+            </div>
+        </fieldset>
+        
+        <button type="submit">Submit</button>
+    </form>
+</div>
+<!-- Add dashboard-specific content here -->
+{% endblock %}

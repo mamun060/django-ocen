@@ -50,8 +50,9 @@
             <input class="form-control" type="password" placeholder="Enter Password">
          </div>
       </div> -->
-      <form action="/login/" method="post" >
+      <form action="" method="post" >
          {% csrf_token %}
+         <!-- {{ form.as_p }} -->
          {{ form }} 
          <button type="submit" class="btn btn-primary btn-block mt-2">Submit</button>
       </form>

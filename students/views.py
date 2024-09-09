@@ -2,9 +2,13 @@
 from django.shortcuts import render, redirect
 from .models import Student
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse , HttpResponseForbidden
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def students(request):
+    if not request.user.groups.filter(name='Student').exists():
+        return HttpResponseForbidden("You do not have access to this page.")
     mystudents = Student.objects.all()  # Fetch all members
     context = {
         'mystudents': mystudents,

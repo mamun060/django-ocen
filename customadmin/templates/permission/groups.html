@@ -1,0 +1,44 @@
+<!-- customadmin/templates/dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div>
+    <h2>Manage User Group wise permission</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+        
+        <label for="user_id">User:</label>
+        <select name="user_id" id="user_id">
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+        
+        <!-- <label for="group_name">Group:</label>
+        <select name="group_name" id="group_name">
+            {% for group in groups %}
+                <option value="{{ group.name }}">{{ group.name }}</option>
+            {% endfor %}
+        </select> -->
+
+          
+        <fieldset>
+            <legend>Groups:</legend>
+            <div class="permission-list">
+                {% for group in groups %}
+                    <label>
+                        <input type="checkbox" name="permissions" value="{{ permission.codename }}">
+                        {{ group.name }}
+                    </label><br>
+                {% endfor %}
+            </div>
+        </fieldset>
+        
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<!-- Add dashboard-specific content here -->
+{% endblock %}
