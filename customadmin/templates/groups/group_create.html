@@ -1,0 +1,27 @@
+<!-- customadmin/templates/dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div>
+    <h2>Create Group</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="group_name">Group Name:</label>
+        <input type="text" name="group_name" id="group_name" required>
+
+        <h3>Select Permissions</h3>
+        {% for permission in permissions %}
+            <label>
+                <input type="checkbox" name="permissions" value="{{ permission.codename }}">
+                {{ permission.name }}
+            </label><br>
+        {% endfor %}
+
+        <button type="submit">Create Group</button>
+    </form>
+</div>
+
+<!-- Add dashboard-specific content here -->
+{% endblock %}

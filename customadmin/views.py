@@ -32,7 +32,60 @@ def groupView(request):
     users = User.objects.all()
     groups = Group.objects.all()
 
-    return render(request, 'permission/groups.html', {'users': users, 'groups': groups})
+    return render(request, 'groups/group_assign.html', {'users': users, 'groups': groups})
+
+@login_required
+def group_list(request):
+    groups = Group.objects.all()  # Fetch all groups
+    return render(request, 'groups/groups.html', {'groups': groups})
+
+
+@login_required
+def group_create(request):
+    if request.method == 'POST':
+        group_name = request.POST.get('group_name')
+        group = Group(name=group_name)
+        group.save()  # Create the new group
+
+        # Add permissions to the group if selected
+        permissions = request.POST.getlist('permissions')
+        group.permissions.set(Permission.objects.filter(codename__in=permissions))
+        
+        return redirect('groups:groups')  # Redirect to group list view
+
+    permissions = Permission.objects.all()  # Fetch all permissions
+    return render(request, 'groups/group_create.html', {'permissions': permissions})
+
+
+@login_required
+def group_update(request, group_id):
+    group = Group.objects.get(id=group_id)
+
+    if request.method == 'POST':
+        group_name = request.POST.get('group_name')
+        group.name = group_name
+        group.save()
+
+        # Update permissions
+        permissions = request.POST.getlist('permissions')
+        group.permissions.set(Permission.objects.filter(codename__in=permissions))
+        
+        return redirect('group_list')  # Redirect back to the group list
+
+    permissions = Permission.objects.all()  # Fetch all permissions
+    group_permissions = group.permissions.values_list('codename', flat=True)
+    return render(request, 'groups/group_update.html', {
+        'group': group, 
+        'permissions': permissions, 
+        'group_permissions': group_permissions
+    })
+
+
+@login_required
+def group_delete(request, group_id):
+    group = Group.objects.get(id=group_id)
+    group.delete()  # Delete the group
+    return redirect('group_list')
 
 # Permission management view
 @login_required

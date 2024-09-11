@@ -1,0 +1,91 @@
+<!-- customadmin/templates/dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<!-- Add dashboard-specific content here -->
+<div style="padding: 20px; margin: 20px; border: 1px solid grey;">
+    <div class="row">
+        <div class="col-xl-6 col-md-6">
+            <h2>Manage User Group wise permission</h2>
+        </div>
+        <div class="col-xl-6 col-md-6">
+           <div class="card">
+              <div style="display: flex; justify-content: right; gap: 20px;">
+                 <button type="button" class="btn btn-primary">
+                    <a style="color: white;" href="/user/groups/create/">
+                        Create group
+                    </a>
+                 </button>
+                 <button type="button" class="btn btn-success">
+                    <a style="color: white;" href="/user/groups/assign/">
+                       Assign Group
+                    </a>
+                 </button>
+           </div>
+        </div>
+     </div>
+
+     <div class="row">
+        <div class="col-xl-12">
+            <table style="width: 100%; border: 1px solid gray;" class="table data-table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Group Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for group in groups %}
+                    <tr>
+                        <td>{{ group.name }}</td>
+                        <td>
+                            <a href="user/groups/update/{{group.id}}">Edit</a> |
+                            <a href="user/groups/delete/{{group.id}}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+     </div>
+     <!-- Group assign -->
+     <!-- <div>
+        <h2>Assign Group</h2>
+        <form method="post" action="">
+            {% csrf_token %}
+            
+            <label for="user_id">User:</label>
+            <select name="user_id" id="user_id">
+                {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+            
+            <label for="group_name">Group:</label>
+            <select name="group_name" id="group_name">
+                {% for group in groups %}
+                    <option value="{{ group.name }}">{{ group.name }}</option>
+                {% endfor %}
+            </select>
+    
+              
+            <fieldset>
+                <legend>Groups:</legend>
+                <div class="permission-list">
+                    {% for group in groups %}
+                        <label>
+                            <input type="checkbox" name="permissions" value="{{ permission.codename }}">
+                            {{ group.name }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+            </fieldset>
+            
+            <button type="submit">Submit</button>
+        </form>
+     </div> -->
+   
+</div>
+{% endblock %}
